@@ -1,4 +1,4 @@
-Avaliação Técnica
+**Avaliação Técnica**
 
 Encurtamento de URL é uma técnica utilizada na internet para transformar um endereço HTTP em um link mais curto. Você foi foi designado para desenvolver uma nova plataforma que seja capaz de encurtar urls e mostrar os links mais acessados após o encurtamento.
 
@@ -28,4 +28,4 @@ Como líder do time, você tem liberdade para implementar a solução na linguag
 
 Após a implementação das funcionalidades, você deve enviar um merge request com todo o seu trabalho para que possa ser avaliado pelo time e integrado a branch principal do projeto.
 
-Caso tenha dúvidas, não exite em perguntar para o Product Owner.
+Caso tenha dúvidas, não hesite em perguntar para o Product Owner.
