@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  encurtador:
+    container_name: encurtador
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      chmod +x scripts/create_superuser.sh &&
+      ./scripts/create_superuser.sh &&
+      python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
