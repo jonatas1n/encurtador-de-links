@@ -1,31 +1,34 @@
-**Avaliação Técnica**
+## Visão Geral
 
-Encurtamento de URL é uma técnica utilizada na internet para transformar um endereço HTTP em um link mais curto. Você foi foi designado para desenvolver uma nova plataforma que seja capaz de encurtar urls e mostrar os links mais acessados após o encurtamento.
+## Guia de instalação
 
-Você recebe duas histórias de usuário para serem desenvolvidas na primeira sprint do projeto:
+Essa aplicação tem seu ambiente configurado através de conteiners Docker, portanto, tem como pré-requisitos a instalação do Docker e Docker-compose.
 
-1.  Como usuário, desejo encurtar urls para tornar os links da minha plataforma mais agradáveis ao serem compartilhados para outros usuários;
+Também é necessário ter o Git instalado para clonar o repositório.
 
-2.  Como usuário, desejo visualizar as urls mais acessadas após o encurtamento, para validar se urls encurtadas são mais acessadas após o seu compartilhamento do que as originais;
+### Clonar o repositório:
 
-Para estas histórias de usuário alguns critérios de aceitação foram definidos:
+```
+git clone https://gitlab.com/pencillabs/encurtador-de-url.git
+```
 
-1.  Primeira história:
+### Execução do conteiner:
 
-    -   O input deve validar se o texto inserido tem o formato de uma url;
+```
+docker-compose up --build
+```
 
-    -   Urls inválidas não poderão ser encurtadas;
+Após esses passos a aplicação deverá estar acessível em:
 
-    -   Urls encurtadas devem ser únicas;
+```
+localhost:8000
+0.0.0.0:8000
+```
 
-2.  Segunda história:
+O projeto está utilizando sqlite3 como banco de dados.
+Para acessar a área administrativa ```(http://localhost:8000/admin)```, use as informações:
 
-    -   O ranking deve mostrar apenas as 5 urls mais acessadas;
-
-    -   O ranking deve mostrar a url original, a url encurtada e a totalidade de acessos a essa url encurtada;
-
-Como líder do time, você tem liberdade para implementar a solução na linguagem que preferir. Como líder você também já deve estar habituado a desenvolver produtos com qualidade. Isso envolve uso de técnicas de programação, escrita de testes e sólidos conceitos de Orientação a Objetos.
-
-Após a implementação das funcionalidades, você deve enviar um merge request com todo o seu trabalho para que possa ser avaliado pelo time e integrado a branch principal do projeto.
-
-Caso tenha dúvidas, não hesite em perguntar para o Product Owner.
+```
+Username: admin
+Password: password
+```
