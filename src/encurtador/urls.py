@@ -1,7 +1,7 @@
 from django.urls import path
 
-from . import views
+from .views import new_link
 
 urlpatterns = [
-    path('', views.new_link, name='new_link')
-]
+    path('', new_link, name='new_link'),
+    ]

@@ -6,3 +6,4 @@ class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
         fields = ['url']
+        labels = {'url': ''}

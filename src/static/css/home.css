@@ -1,0 +1,45 @@
+body {
+    margin: 0px;
+    font: normal 12pt Arial;
+    background-color: rgb(67, 20, 105);
+}
+
+.content { 
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+}
+
+input {
+    width: 60vh;
+    height: 6vh;
+    padding: 0px 15px;
+    font-size: 16pt;
+    border: none;
+    border-radius: 10px;
+}
+
+button {
+    margin: 16px 16px;
+    padding: 0px 4vh;
+    font-size: 16pt;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(125, 95, 160);
+    box-shadow: 3px 3px 10px rgba(43, 43, 43, 0.432);
+}
+
+button:active {
+    box-shadow: none;
+}
+
+button:hover {
+    background-color: rgb(133, 103, 190);
+}
