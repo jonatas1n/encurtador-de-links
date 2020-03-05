@@ -8,13 +8,21 @@
 </head>
 <body>
     <div class="content">
-        <p>Add a new url:</p>
-        
-        <form action="{% url 'encurtador:new_link' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Shorten</button>
-        </form>
+        <div class="content-landing">
+            <div class="title">
+                <h1>Encurtador</h1>
+                <h1 id="titleUrl">de URLs</h1>
+                <input type="button" value="Nos Ajude a Evoluir" onclick="encurtadorGit()" id="encurtadorGit">
+            </div>
+        </div>
+        <div class="content-forms">
+            <form id="urlForm" action="{% url 'encurtador:new_link' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" id="formButton" >Encurtar</button>
+            </form>
+            <div class="message-error" id="messageError"></div>
+        </div>
     </div>
     <script src="{% static 'js/home.js' %}"></script>
 </body>
