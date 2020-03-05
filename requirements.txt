@@ -1,1 +1,2 @@
 Django==2.2.4
+coverage==4.5.4
