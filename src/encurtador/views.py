@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -21,3 +21,14 @@ def new_link(request):
     context = {'form': form}
     return render(request, 'encurtador/home.html', context)
 
+def get_shortener(request, short_url):
+    '''
+    Redirect to each site
+    '''
+    try:
+        link = Link.objects.get(pk=Link.to_id(code=short_url))
+        link.access += 1
+        link.save()
+    except Link.DoesNotExist:
+        raise Http404("Link does not exist")
+    return HttpResponseRedirect(link.url)
