@@ -3,13 +3,11 @@ function encurtadorGit() {
     window.location.replace("https://gitlab.com/pencillabs/encurtador-de-url");
 }
 
-var buttonForm = document.querySelector("#formButton")
-buttonForm.addEventListener('click', formValidate)
 
-function formValidate() {
+/*function formValidate() {
     let form = document.querySelector("#urlForm")
     if (!form.checkValidity()){
-        let errorMessage = document.querySelector("#messageError")
+        let errorMessage    = document.querySelector("#messageError")
         
         errorMessage.style.display = "block"
         errorMessage.innerHTML = `<p> Não é possível encurtar. Verifique se está no formato certo <b>(http://...)</b> <p>`
@@ -18,11 +16,29 @@ function formValidate() {
         function erroAppear() {
             errorMessage.style.display = "none"
         }
+    } else {
     }
-    
-    let urlAlreadyExist = document.getElementsByClassName("errorlist")
-    if(urlAlreadyExist){
-        console.log("Leolindo")
-    }
-}
+}*/
+
+
+$(document).ready( () =>{
+    $("#urlForm").submit( e => {
+        
+        alert("LeoLindo")
+        
+        $.ajax({
+            type:'POST',
+            url: '',
+            data: {
+                url:$('#id_url').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                alert('leo')
+            }
+        })
+        
+        e.preventDefault()
+    })
+})
 

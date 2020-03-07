@@ -13,5 +13,8 @@ class Link(models.Model):
     def to_id(code):
         return short_url.decode_url(code)
 
+    def to_short_url(self):
+        return short_url.encode_url(self.id)
+
     def __str__(self):
         return (self.url)

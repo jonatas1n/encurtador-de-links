@@ -15,17 +15,100 @@ body {
 /* Inside div content-forms */
 /* --------------------- */
 
-.content-forms {
+.content-shortener{
     width: 100%;
+    color: rgb(221, 219, 219);
+    background-color: rgb(100, 18, 167);
+
+    -moz-box-shadow: 3px 3px 10px rgba(43, 43, 43, 0.432);
+	-webkit-box-shadow: 3px 3px 10px rgba(43, 43, 43, 0.432);
+    box-shadow: 3px 3px 10px rgba(43, 43, 43, 0.432);
+}
+
+.shortener-link {
+    width: 50%;
+    padding: 12px 0px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: rgb(245, 245, 245);
+    
+}
+
+.box-result {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(67, 20, 105);
+}
+
+#contentResult {
+    width: 50%;
+    z-index: 2;
+    margin-top: 1%;
+    display: none;
+    position: absolute;
+    justify-content: center;
+}
+
+.normal-result {
+    display: flex;
+}
+
+.without-result {
+    display: none;
+}
+
+#contentForms {
+    float: right;
+    display: flex;
+    z-index: 50;
+    position: relative;
     padding: 40px 0px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(67, 20, 105);
     
     -moz-box-shadow: inset 0 0 10px rgba(43, 43, 43, 0.548);
 	-webkit-box-shadow: inset 0 0 10px rgba(43, 43, 43, 0.548);
     box-shadow: inset 0 0 10px rgba(43, 43, 43, 0.7);
+}
+
+.normal-forms {
+    width: 100%;
+}
+
+.back-forms {
+    animation-duration: 2s;
+    animation-name: leftForms;
+
+    width: 50%;
+}
+
+@keyframes leftForms {
+    from {
+        width: 50%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.animation-forms {
+    animation-duration: 2s;
+    animation-name: rightForms;
+
+    width: 50%;
+}
+
+@keyframes rightForms {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 50%;
+    }
 }
 
 form {
@@ -34,7 +117,8 @@ form {
 
 input {
     width: 60vh;
-    height: 6vh;
+
+    height: 5vh;
     padding: 0px 15px;
     font-size: 16pt;
     box-shadow: none;
@@ -42,6 +126,23 @@ input {
     border: none;
     border-radius: 10px;
 }
+
+.animation-input {
+    animation-duration: 2s;
+    animation-name: rightInput;
+
+    width: 25vh;
+}
+
+@keyframes rightInput {
+    from {
+        width: 60vh;
+    }
+    to {
+        width: 25vh;
+    }
+}
+
 
 /*Button content-forms*/
 

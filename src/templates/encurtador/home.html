@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="content">
@@ -15,15 +17,29 @@
                 <input type="button" value="Nos Ajude a Evoluir" onclick="encurtadorGit()" id="encurtadorGit">
             </div>
         </div>
-        <div class="content-forms">
-            <form id="urlForm" action="{% url 'encurtador:new_link' %}" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" id="formButton" >Encurtar</button>
-            </form>
-            <div class="message-error" id="messageError"></div>
+        <div class="content-shortener">
+            <div class="normal-forms" id="contentForms">
+                <form id="urlForm" action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" id="formButton" onclick="formValidate()">Encurtar</button>
+                </form>
+                <div class="message-error" id="messageError"></div>
+            </div>
+            <div class="without-result" id="contentResult">
+                <div class="box-result">
+                    <p >{{ link }}</p>
+                    {% load font_awesome %}
+                    {% fa_css %}
+                    {% fa 'chevron-down' %}
+                    <div class="shortener-link">
+                        <a href="{{ short_url }}">{{ short_url }}</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{% static 'js/home.js' %}"></script>
+
 </body>
 </html>
