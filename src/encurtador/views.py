@@ -15,7 +15,12 @@ def new_link(request):
     else:
         form = LinkForm(request.POST)
         if form.is_valid():
-            return HttpResponse('')
+            form.save()
+
+            link = Link.objects.order_by('id')[0]
+
+            context = {'link': link.url[:30] + '...', 'short_url': '0.0.0.0:8000/' + link.to_short_url()}
+            return HttpResponse(context)
     
     context = {'form': form}
     return render(request, 'encurtador/home.html', context)
