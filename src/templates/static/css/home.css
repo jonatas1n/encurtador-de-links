@@ -26,14 +26,21 @@ body {
 }
 
 .shortener-link {
-    width: 50%;
+    width: 75%;
     padding: 12px 0px;
     margin-top: 10px;
     text-align: center;
     font-weight: bold;
     border-radius: 8px;
     background-color: rgb(245, 245, 245);
-    
+}
+
+a:link {
+    color: rgb(100, 18, 167);
+}
+
+a:hover {
+    color: rgb(127, 34, 202);
 }
 
 .box-result {
@@ -82,7 +89,7 @@ body {
     animation-duration: 2s;
     animation-name: leftForms;
 
-    width: 50%;
+    width: 100%;
 }
 
 @keyframes leftForms {
@@ -139,6 +146,22 @@ input {
     }
     to {
         width: 25vh;
+    }
+}
+
+.back-input {
+    animation-duration: 2s;
+    animation-name: leftInput;
+
+    width: 60vh;
+}
+
+@keyframes leftInput {
+    from {
+        width: 25vh;
+    }
+    to {
+        width: 60vh;
     }
 }
 

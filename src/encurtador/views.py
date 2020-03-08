@@ -1,6 +1,7 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
+import json
 
 from .models import Link
 from .forms import LinkForm
@@ -17,11 +18,12 @@ def new_link(request):
         if form.is_valid():
             form.save()
 
-            link = Link.objects.order_by('id')[0]
+            link = Link.objects.order_by('-id')[0]
+            short_code = link.to_short_url()
 
-            context = {'link': link.url[:30] + '...', 'short_url': '0.0.0.0:8000/' + link.to_short_url()}
-            return HttpResponse(context)
-    
+            content = {'link': link.url[:30] + '...', 'short_url': '0.0.0.0:8000/' + short_code, 'short_code': short_code}
+            return HttpResponse(json.dumps(content), content_type='encurtador/json')
+            
     context = {'form': form}
     return render(request, 'encurtador/home.html', context)
 
@@ -31,7 +33,7 @@ def get_shortener(request, short_url):
     '''
 
     try:
-        link = Link.objects.get(pk=Link.to_id(code=short_url))
+        link = Link.objects.get(pk=Link.to_id(short_url))
         link.access += 1
         link.save()
     except Link.DoesNotExist:

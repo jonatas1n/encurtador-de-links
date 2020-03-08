@@ -11,7 +11,7 @@ class Link(models.Model):
     date_added  = models.DateTimeField(auto_now_add=True)
 
     def to_id(code):
-        return short_url.decode_url(code)
+        return short_url.decode_url(str(code))
 
     def to_short_url(self):
         return short_url.encode_url(self.id)

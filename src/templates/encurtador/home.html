@@ -28,12 +28,12 @@
             </div>
             <div class="without-result" id="contentResult">
                 <div class="box-result">
-                    <p >{{ link }}</p>
+                    <p id='link-base'></p>
                     {% load font_awesome %}
                     {% fa_css %}
                     {% fa 'chevron-down' %}
                     <div class="shortener-link">
-                        <a href="{{ short_url }}">{{ short_url }}</a>
+                        <a id='link-result'></a>
                     </div>
                 </div>
             </div>
