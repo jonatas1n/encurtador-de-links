@@ -1,1 +1,4 @@
 Django==2.2.4
+coverage==4.5.4
+short_url==1.2.2 
+django-fa==1.0.0 

@@ -1,0 +1,11 @@
+### Django ###
+__pycache__/
+.vscode/
+env/
+htmlcov/
+db.sqlite3
+.coverage
+.env-staging
+# Ignore automatic migrations
+src/*/migrations/*_auto_*.py
+src/*/migrations/*_merge_*.py
