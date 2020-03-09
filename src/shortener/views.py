@@ -26,10 +26,10 @@ def new_link(request):
             short_code = link.to_short_url()
 
             content = {'link': link.url[:30] + '...', 'short_url': '0.0.0.0:8000/' + short_code, 'short_code': short_code}
-            return HttpResponse(json.dumps(content), content_type='encurtador/json')
+            return HttpResponse(json.dumps(content), content_type='shortener/json')
 
     context = {'form': form}
-    return render(request, 'encurtador/home.html', context)
+    return render(request, 'shortener/home.html', context)
 
 
 def get_shortener(request, short_url):

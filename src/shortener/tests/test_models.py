@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from encurtador.models import Link
-from encurtador.forms import LinkForm
+from shortener.models import Link
+from shortener.forms import LinkForm
 
 
 class TestLink(TestCase):
