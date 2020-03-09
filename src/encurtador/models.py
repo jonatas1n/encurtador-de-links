@@ -6,7 +6,7 @@ class Link(models.Model):
     Model of the links that the user will give
     '''
 
-    url         = models.URLField(unique=True, null=False)
+    url         = models.URLField(null=False)
     access      = models.IntegerField(default=0)
     date_added  = models.DateTimeField(auto_now_add=True)
 
@@ -17,4 +17,4 @@ class Link(models.Model):
         return short_url.encode_url(self.id)
 
     def __str__(self):
-        return (self.url)
+        return (self.url + ' : ' + str(self.id))

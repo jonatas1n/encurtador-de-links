@@ -43,10 +43,10 @@ $(document).ready( () =>{
                 forms.className     = 'animation-forms' 
                 result.className    = 'normal-result'
                 urlInput.className  = 'animation-input'
+                
                 html_link.innerHTML = json.link
                 html_short_url.innerHTML = json.short_url
                 html_short_url.href = json.short_code
-                alert(json)
             },
         })
         
