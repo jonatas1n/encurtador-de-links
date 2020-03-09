@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  encurtador:
-    container_name: encurtador
+  shortener:
+    container_name: shortener
     build:
       context: .
       dockerfile: Dockerfile

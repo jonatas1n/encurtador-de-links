@@ -1,5 +1,5 @@
 
-function encurtadorGit() {
+function shortenerGit() {
     window.location.replace("https://gitlab.com/pencillabs/encurtador-de-url");
 }
 
