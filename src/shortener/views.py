@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.dispatch import receiver, Signal
 from django.shortcuts import render
+from django.db.models import Sum
 from django.urls import reverse
 import json
 
@@ -56,3 +57,14 @@ def set_access_count(sender, **kwargs):
 
     kwargs['link'].access += 1
     kwargs['link'].save()
+
+
+def get_url_rank(request):
+    '''
+    Return the rank to home page
+    '''
+
+    link = Link.objects.values('url').order_by().annotate(Sum('access'))
+    context = {'links': link.order_by('-access__sum')[:5]}
+
+    return render(request, 'shortener/rank.html', context)

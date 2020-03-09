@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+        <p>Entries</p>
+        
+        <ul>
+            {% for link in links %}
+                <li>
+                    <p>{{ link }}</p>
+                </li>
+            {% empty %}
+                <li>
+                    There are no entries for this topic yet
+                </li>
+            {% endfor %}
+        </ul>    
+</body>
+</html>
