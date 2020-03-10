@@ -64,7 +64,7 @@ def get_url_rank(request):
     Return the rank to home page
     '''
 
-    link = Link.objects.values('url').order_by().annotate(Sum('access'))
-    context = {'links': link.order_by('-access__sum')[:5]}
-
+    urls = Link.objects.values('url').order_by().annotate(Sum('access'))
+    context = {'urls': urls.order_by('-access__sum')[:5]}
+          
     return render(request, 'shortener/rank.html', context)

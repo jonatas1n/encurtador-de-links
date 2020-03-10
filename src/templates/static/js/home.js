@@ -1,8 +1,4 @@
 
-function shortenerGit() {
-    window.location.replace("https://gitlab.com/pencillabs/encurtador-de-url");
-}
-
 
 function formValidate() {
     let form = document.querySelector("#urlForm")
@@ -27,7 +23,6 @@ $(document).ready( () =>{
     let urlInput    = document.querySelector("#id_url")
 
     $("#urlForm").submit( e => {
-        
         
         $.ajax({
             type:'POST',

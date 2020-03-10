@@ -1,0 +1,85 @@
+body {
+    margin: 0px;
+    font: normal 12pt Arial;
+}
+
+.content { 
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------------- */
+
+/* Inside div content-landing */
+/* --------------------- */
+
+.content-landing {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    width: 50%;
+    margin: 20px;
+    margin-left: 10%;
+    color: rgb(15, 15, 15);
+    font-size: 40px;
+}
+
+h1 {
+    margin: 0;
+}
+
+#titleUrl {
+    animation-duration: 2s;
+    animation-name: leftUrl;
+
+    margin-left: 30%;
+}
+
+@keyframes leftUrl {
+    from {
+        margin-left: 0;
+    }
+    to {
+        margin-left: 30%;
+    }
+}
+
+#buttonBase, #buttonRank{
+    width: auto;
+    height: 5vh;
+
+    margin-right: 5%;
+
+    margin-top: 10%;
+    color: white;
+    font-size: 12pt;
+    padding: 0px 15px;
+    background-color: rgb(100, 18, 167);
+    
+    border: none;
+    border-radius: 8px;  
+}
+
+#buttonBase:hover, #buttonRank:hover{
+    background-color: rgb(130, 37, 206);
+}
+
+.box-marker {
+    font-size: 30vh;
+}
+
+.fa {
+    font-weight: bold !important; 
+    color: rgb(100, 18, 167);
+}
+
+.buttonFlow {
+    display: flex;
+}

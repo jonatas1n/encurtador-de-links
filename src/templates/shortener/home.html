@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+{% extends "shortener/base.html" %}
 {% load staticfiles %}
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,37 +11,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="content">
-        <div class="content-landing">
-            <div class="title">
-                <h1>Encurtador</h1>
-                <h1 id="titleUrl">de URLs</h1>
-                <input type="button" value="Nos Ajude a Evoluir" onclick="shortenerGit()" id="shortenerGit">
-            </div>
+
+    <div class="content-shortener">
+        <div class="normal-forms" id="contentForms">
+            <form id="urlForm" action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" id="formButton" onclick="formValidate()">Encurtar</button>
+            </form>
+            <div class="message-error" id="messageError"></div>
         </div>
-        <div class="content-shortener">
-            <div class="normal-forms" id="contentForms">
-                <form id="urlForm" action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" id="formButton" onclick="formValidate()">Encurtar</button>
-                </form>
-                <div class="message-error" id="messageError"></div>
-            </div>
-            <div class="without-result" id="contentResult">
-                <div class="box-result">
-                    <p id='link-base'></p>
-                    {% load font_awesome %}
-                    {% fa_css %}
-                    {% fa 'chevron-down' %}
-                    <div class="shortener-link">
-                        <a id='link-result'></a>
-                    </div>
+        <div class="without-result" id="contentResult">
+            <div class="box-result">
+                <p id='link-base'></p>
+                {% load font_awesome %}
+                {% fa_css %}
+                {% fa 'chevron-down' %}
+                <div class="shortener-link">
+                    <a id='link-result'></a>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+    
     <script src="{% static 'js/home.js' %}"></script>
-
 </body>
 </html>
+{% endblock content %}

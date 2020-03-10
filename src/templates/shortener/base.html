@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Encutador de Url</title>
+</head>
+<body>
+    <div class="content">
+        <div class="content-landing">
+            <div class="title">
+                <h1>Encurtador</h1>
+                <h1 id="titleUrl">de URLs</h1>
+                <div class="buttonFlow">
+                    <button type="button" onclick="shortenerGit()" id="buttonBase">Nos Ajude a Evoluir</button>
+                    <button type="button" onclick="getRankOrShortener()" id="buttonRank">Rank dos mais acessados</button>
+                </div>
+            </div>
+            <div class="box-marker">
+                {% load font_awesome %}
+                {% fa_css %}
+                {% fa 'code' %}
+            </div>
+        </div>
+        {% block content %} {% endblock content %}
+    </div>
+    <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>
