@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends "shortener/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/rank.css' %}">
+</head>
+<body>
+        
+        <div id="contentRank">
+            <div class="">
+                <h2>Links mais acessadas</h2>
+                <h2>pelas urls</h2>
+            </div>
+            <div class="contentList">
+                <div id="contentUrl">
+                    <ul>
+                        <h3>Links</h3>
+                        {% for url in urls %}
+                            <li class="box-url">
+                                <a href="{{ url.url }}">{{ url.url }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>  
+                </div>
+                <div id="contentAccess">
+                    <ul>
+                        <h3>Acessos</h3>
+                        {% for url in urls %}
+                            <li class="box-access">
+                                <p>{{ url.access__sum }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    <script src="{% static 'js/rank.js' %}"></script>     
+</body>
+</html>
+{% endblock content %}

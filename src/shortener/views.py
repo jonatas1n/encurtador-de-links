@@ -1,14 +1,17 @@
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.dispatch import receiver, Signal
 from django.shortcuts import render
+from django.db.models import Sum
 from django.urls import reverse
+import logging
 import json
 
 from .models import Link
 from .forms import LinkForm
 
 #Signal to get_shortener
-request_counter_signal = Signal(providing_args=['link'])
+request_counter_signal  = Signal(providing_args=['link'])
+log                     = logging.getLogger()
 
 def new_link(request):
     '''
@@ -22,14 +25,19 @@ def new_link(request):
         if form.is_valid():
             form.save()
 
-            link = Link.objects.order_by('-id')[0]
-            short_code = link.to_short_url()
-
-            content = {'link': link.url[:30] + '...', 'short_url': '0.0.0.0:8000/' + short_code, 'short_code': short_code}
-            return HttpResponse(json.dumps(content), content_type='shortener/json')
+            return HttpResponse(json.dumps(create_content()), content_type='shortener/json')
 
     context = {'form': form}
     return render(request, 'shortener/home.html', context)
+
+
+def create_content():
+    link = Link.objects.latest('id')
+    short_code = link.to_short_url()
+
+    content = {'link': link.url[:30] + '...', 'short_url': '0.0.0.0:8000/' + short_code, 'short_code': short_code}
+            
+    return content
 
 
 def get_shortener(request, short_url):
@@ -56,3 +64,18 @@ def set_access_count(sender, **kwargs):
 
     kwargs['link'].access += 1
     kwargs['link'].save()
+
+
+def get_url_rank(request):
+    '''
+    Return the rank to home page
+    '''
+    
+    return render(request, 'shortener/rank.html', create_context())
+
+def create_context():
+
+    urls = Link.objects.values('url').order_by().annotate(Sum('access'))
+    context = {'urls': urls.order_by('-access__sum')[:5]}
+          
+    return context
