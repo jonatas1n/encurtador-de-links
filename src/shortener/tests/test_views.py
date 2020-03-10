@@ -34,12 +34,24 @@ class TestGetShortener(TestCase):
 
     def test_get_shortener_GET(self):
         self.get_shortener  = (reverse('shortener:get_shortener', args=['867nv']))
-        response    = self.client.get(self.get_shortener)
+        response            = self.client.get(self.get_shortener)
 
         self.assertEqual(response.status_code, 302)
 
     def test_get_shortener_get(self):
         self.get_shortener  = (reverse('shortener:get_shortener', args=['867n3']))
-        response    = self.client.get(self.get_shortener)
+        response            = self.client.get(self.get_shortener)
 
         self.assertEqual(response.status_code, 404)
+
+class TestGetUrlRank(TestCase):
+
+    def setUp(self):
+        self.client         = Client()
+        self.get_url_rank   = reverse('shortener:get_url_rank')
+
+    def test_rank_url_GET(self):
+        response    = self.client.get(self.get_url_rank)
+
+        self.assertEqual(response.status_code, 200)
+
