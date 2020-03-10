@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from shortener.models import Link
-from shortener.forms import LinkForm
 
 
 class TestLink(TestCase):
@@ -28,11 +27,3 @@ class TestLink(TestCase):
             Link.to_id('867nv'),
             (1)
         )
-
-class TestFormLink(TestCase):
-
-    def setUp(self):
-        self.form = LinkForm(data={'url' : 'https://gitlab.com/pencillabs'})
-
-    def test_form_valid(self):
-        self.assertTrue(self.form.is_valid())
