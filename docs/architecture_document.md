@@ -68,4 +68,4 @@ O sistema terá uma cobertura mínima de testes de 90%, buscando garantir que su
 
 ## 5. Diagrama de pacotes
 
-## 6. Diagrama de classes e serviços
+![Diagrama_de_Pacotes](images/diagrama_de_pacotes.png)
