@@ -36,10 +36,8 @@ As seguintes tecnologias poderão ser utilizadas para o desenvolvimento da solu�
 
 ## Deploy
 
-O deploy de produção deverá ser feito em uma instância do [Heroku](https://www.heroku.com/). O deploy local deverá ser feito
-via `docker-compose`. Caso o deploy no ambiente local dos avaliadores não funcione, 
-o candidato está automaticamente **desclassificado**.
-Caso o deploy no Heroku não funcione, o candidato sofrerá perdas na avaliação.
+O deploy local deverá ser feito via `docker-compose`.
+Caso o deploy no ambiente local dos avaliadores não funcione, o candidato está automaticamente **desclassificado**.
 
 ## Critérios de avaliação
 
