@@ -1,46 +1,47 @@
 # Teste técnico
 
 ## Escopo
-Encurtamento de URL é uma técnica utilizada na internet para transformar um endereço HTTP em um link mais curto. Você foi foi designado para desenvolver uma nova plataforma que seja capaz de encurtar urls e mostrar os links mais acessados após o encurtamento.
+Encurtamento de URL é uma técnica utilizada na internet para transformar um endereço HTTP em um link mais curto. Você foi designado para desenvolver uma nova plataforma que seja capaz de encurtar urls e mostrar os links mais acessados após o encurtamento.
 
 Você recebeu três histórias de usuário para serem desenvolvidas na primeira sprint do projeto:
 
-1.  Como usuário, gostaria de me autenticar no sistema para ter acesso ao meu perfil;
-
-	-   O usuário deverá se cadastrar na plataforma, informando nome, email e senha;
-	-   O usuário deverá se autenticar na plataforma, informando email e senha;
-	-   O usuário deverá ser avisado caso o email informado no cadastro já esteja em uso;
-	-   Senhas deverão ser salvas utilizando alguma biblioteca de cifragem (criptografia);
-
-2.  Como usuário, desejo encurtar urls para tornar os links da minha plataforma mais agradáveis ao serem compartilhados para outros usuários;
+1.  Como usuário, desejo encurtar urls para tornar-las mais simples de serem compartilhadas em outras redes;
 
 	-   O input deve validar se o texto inserido tem o formato de uma url;
 	-   Urls inválidas não poderão ser encurtadas;
 	-   Urls encurtadas devem ser únicas;
 	-  Uma url que já foi encurtada não deve ser encurtada novamente;
 
+
+2.  Como usuário, gostaria de ao clicar em uma url encurtada, ser redirecionado para a url original;
+
+	-  O usuário deverá ser redirecionado para o encurtador;
+	-  O encurtador deverá reconhecer a url encurtada, e redirecionar o usuário para a url original;
+
+
 3.  Como usuário, desejo visualizar as urls mais acessadas após o encurtamento;
 
-	-   O ranking deve mostrar apenas as 5 urls mais acessadas;
+	-   As urls mais acessadas deverão ser apresentadas no formato de ranking;
+	-   O ranking deve mostrar apenas as cinco urls mais acessadas;
 	-   O ranking deve mostrar a url original, a url encurtada e a totalidade de acessos à url encurtada;
 
-Dada às histórias anteriores, a plataforma deverá ter quatro telas:
 
-	- Tela de login;
-	- Tela de cadastro;
-	- Ranking com lista de urls encurtadas pelo usuário logado;
+Dada as histórias anteriores, a plataforma deverá ter duas telas:
+
 	- Tela para realizar o encurtamento;
+	- Ranking com lista de urls encurtadas;
 
 
 As seguintes tecnologias poderão ser utilizadas para o desenvolvimento da solução:
 
-	- Frontend: qualquer biblioteca/framework
-	- Backend: ruby(Rails), python, NodeJS ou PHP
+	- Frontend: qualquer biblioteca/framework;
+	- Backend: ruby, python, NodeJS ou PHP (qualquer biblioteca/framework feitos nessas linguagens);
 
 ## Deploy
 
 O deploy de produção deverá ser feito em uma instância do [Heroku](https://www.heroku.com/). O deploy local deverá ser feito
-utilizando um arquivo `docker-compose`. Caso o deploy local não funcione, o candidato está automaticamente **desclassificado**.
+via `docker-compose`. Caso o deploy no ambiente local dos avaliadores não funcione, 
+o candidato está automaticamente **desclassificado**.
 Caso o deploy no Heroku não funcione, o candidato sofrerá perdas na avaliação.
 
 ## Critérios de avaliação
@@ -50,14 +51,15 @@ Caso o deploy no Heroku não funcione, o candidato sofrerá perdas na avaliaçã
 - Configuração separada da implementação (https://12factor.net/);
 - Testes automatizados (**Aplicação sem testes será desclassificada**);
 - Documentação da arquitetura escolhida para a solução;
+- Aplicação com código copiado de outros candidatos ou da internet será **desclassificada**.
 
 
 Como líder do time, você tem liberdade para implementar a solução na arquitetura que preferir. O fluxo de envio da solução deverá
 ser da seguinte forma:
 
-	- Faça um fork do repositório [https://gitlab.com/pencillabs/encurtador-de-url];
-	- Desenvolva a solução no seu Fork;
-	- Abra um Merge Request para o repositório original;
+	- Faça um fork privado do repositório [https://gitlab.com/pencillabs/encurtador-de-url];
+	- Desenvolva a solução no seu fork;
+	- Ao final do período do teste, envie um email para `contato@pencillabs.com.br`, com o link para o repositório. Vocẽ deverá
+	utilizar o gitlab, e adicionar os usuários dos avaliadores como contribuidores do seu repositório;
 
-Na descrição do MR, descreva brevemente a solução e inclua o link para a instância no Heroku. O prazo para entrega do projeto é
-de uma semana a partir do dia 27/07.
+O prazo para entrega do projeto é de uma semana a partir do dia 6/10/2020.
