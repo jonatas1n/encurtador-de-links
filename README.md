@@ -6,7 +6,6 @@ Encurtamento de URL é uma técnica utilizada na internet para transformar um en
 Você recebeu três histórias de usuário para serem desenvolvidas na primeira sprint do projeto:
 
 1.  Como usuário, desejo encurtar urls para tornar-las mais simples de serem compartilhadas em outras redes;
-
 	-   O input deve validar se o texto inserido tem o formato de uma url;
 	-   Urls inválidas não poderão ser encurtadas;
 	-   Urls encurtadas devem ser únicas;
@@ -14,13 +13,11 @@ Você recebeu três histórias de usuário para serem desenvolvidas na primeira 
 
 
 2.  Como usuário, gostaria de ao clicar em uma url encurtada, ser redirecionado para a url original;
-
 	-  O usuário deverá ser redirecionado para o encurtador;
 	-  O encurtador deverá reconhecer a url encurtada, e redirecionar o usuário para a url original;
 
 
 3.  Como usuário, desejo visualizar as urls mais acessadas após o encurtamento;
-
 	-   As urls mais acessadas deverão ser apresentadas no formato de ranking;
 	-   O ranking deve mostrar apenas as cinco urls mais acessadas;
 	-   O ranking deve mostrar a url original, a url encurtada e a totalidade de acessos à url encurtada;
@@ -54,12 +51,14 @@ Caso o deploy no Heroku não funcione, o candidato sofrerá perdas na avaliaçã
 - Aplicação com código copiado de outros candidatos ou da internet será **desclassificada**.
 
 
+## Entrega
+
 Como líder do time, você tem liberdade para implementar a solução na arquitetura que preferir. O fluxo de envio da solução deverá
 ser da seguinte forma:
 
-	- Faça um fork privado do repositório [https://gitlab.com/pencillabs/encurtador-de-url];
-	- Desenvolva a solução no seu fork;
-	- Ao final do período do teste, envie um email para `contato@pencillabs.com.br`, com o link para o repositório. Vocẽ deverá
-	utilizar o gitlab, e adicionar os usuários dos avaliadores como contribuidores do seu repositório;
+- Faça um fork privado desse [repositório](https://gitlab.com/pencillabs/encurtador-de-url);
+- Desenvolva a solução no seu fork;
+- Ao final do período do teste, envie um email para `contato@pencillabs.com.br`, com o link para o repositório. Vocẽ deverá
+utilizar o gitlab, e adicionar os usuários dos avaliadores como contribuidores do seu repositório;
 
-O prazo para entrega do projeto é de uma semana a partir do dia 6/10/2020.
+O prazo para entrega do projeto é de uma semana a partir do dia **6/10/2020**.
