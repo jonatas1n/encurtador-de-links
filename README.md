@@ -59,4 +59,4 @@ ser da seguinte forma:
 - Ao final do período do teste, envie um email para `contato@pencillabs.com.br`, com o link para o repositório. Vocẽ deverá
 utilizar o gitlab, e adicionar os usuários dos avaliadores como contribuidores do seu repositório;
 
-O prazo para entrega do projeto é de uma semana a partir do dia **6/10/2020**.
+O prazo para entrega do projeto é de uma semana a partir do dia **7/10/2020**.
