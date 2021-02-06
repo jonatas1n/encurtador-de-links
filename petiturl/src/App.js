@@ -1,35 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
 
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from 'react-router-dom'
+
+import Home from './components/Home/index'
+import GoTo from './components/GoTo/index'
+import NotFound from './components/NotFound/index'
+import ShowLink from './components/ShowLink/index'
+
 function App() {
-  const [placeholder, setPlaceholder] = useState('Hi');
-
-  useEffect(() => {
-    fetch('/hello').then(res => res.json()).then(data => {
-      setPlaceholder(data.result);
-    });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>Flask says {placeholder}</p>
-      </header>
-    </div>
-  );
+
+    <Router>
+      <Switch>
+        <Route exact path={'/'} component={Home}/>
+        <Route exact path={'/show/:link'} component={ShowLink}/>
+        <Route path={'/not-found'} component={NotFound}/>
+        <Route exact path={'/:short'} component={GoTo}/>
+        <Redirect to={'/not-found'} />
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;

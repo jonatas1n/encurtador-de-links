@@ -1,15 +1,39 @@
 from flask import Flask, request
 from flask_cors import CORS
+import base64
+import requests
+from urllib.parse import urlparse
+
 from db import Database
 
 app = Flask(__name__)
-db = Database()
 CORS(app)
+db = Database()
+
+@app.route('/redirect', methods=['POST'])
+def getUrl():
+    link = request.args['link']
+
+    url = db.getUrl(link)
+    if(url):
+        return {
+            'status': 'success',
+            'response': url
+        }
+    else:
+        return {
+            'status': 'fail',
+            'response': ''
+        }
+        
 
 @app.route('/get', methods=['POST'])
 def getLink():
     if 'url' in request.args:
         url = request.args['url']
+        parse = urlparse(url)
+        url = url.replace(parse.scheme + '://', '')
+        url = url.replace('www.', '')
     else:
         return {
             'status': 'fail'
@@ -30,24 +54,60 @@ def getLink():
 
 @app.route('/add', methods=['POST'])
 def addURL():
-    if 'url' in request.args:
-        url = request.args['url']
-    else:
+    url = request.args['url']
+    parse = urlparse(url)
+    
+    if parse.path == 'localhost:3000':
         return {
-            'status': 'fail'
+            'status': 'error'
         }
 
-    if(db.checkURL(url)):
+    url = url.replace(parse.scheme + '://', '')
+    url = url.replace('www.', '')
+
+    short = None
+    
+    if 'short' in request.args:
+        short = request.args['short']
+
+    if db.checkURL(url):
         link = db.getLink(url)
 
         return {
-            'status': 'fail',
+            'status': 'error',
             'response': link
         }
-    else:
-        link = db.addURL(url)
+    elif urlValidate(url):
+        short = db.addURL(url, short)
 
         return {
             'status': 'success',
-            'response': link
+            'response': short
         }
+    else:
+        return {
+            'status': 'error'
+        }
+
+@app.route('/rank', methods=['GET'])
+def getRank():
+    result = db.getRank()
+
+    response = []
+
+    for i in range(len(result)):
+        response.append(result[i])
+
+    return {
+        'status': 'success',
+        'response': response
+    }
+
+def urlValidate(url):
+    return True
+    try:
+        response = requests.get(url)
+        print(response)
+        return True
+    except:
+        return False

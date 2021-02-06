@@ -1,0 +1,14 @@
+body {
+    display: grid;
+    place-items: center;
+    margin: 0;
+}
+
+main {
+    width: 100%;
+}
+
+#short-bar {
+    display: flex;
+    gap: 15px;
+}
