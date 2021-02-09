@@ -1,14 +1,13 @@
-FROM node:10-alpine
+FROM node:13-alpine
 
 WORKDIR /frontend
 
-COPY . .
+COPY . /frontend
 
-RUN npm install yarn
-RUN yarn add
-RUN yarn add create-react-app
-RUN yarn add react-router-dom
+ENV PATH /frontend/node_modules/.bin:$PATH
 
+COPY package.json /app/package.json
+RUN npm install --silent
+RUN npm install react-scripts@3.3.1 -g --silent
 
-ENTRYPOINT ["yarn"]
-CMD ["start"]
+CMD ["npm", "start"]

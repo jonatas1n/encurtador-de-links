@@ -5,9 +5,9 @@ RUN apk add python3-dev \
     && apk add py3-pip \
     && pip3 install --upgrade pip
 
-WORKDIR /APP
+WORKDIR /backend
 
-COPY . /APP
+COPY . /backend
 
 RUN pip install --user flask
 RUN pip install --user flask_cors
