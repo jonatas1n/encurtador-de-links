@@ -21,9 +21,9 @@ export default function ShowLink() {
         <main>
             <h2>
                 Este é o seu novo link:
-                <a href={`http://localhost:3000/${link}`}>
+                <a href={`/${link}`}>
                     <br/>
-                    {`http://localhost:3000/${link}`}
+                    {`/${link}`}
                 </a>
             </h2>
 

@@ -16,7 +16,7 @@ export default function Home() {
 
     return(
         <main>
-            <h1>PetitUrl</h1>
+            <h1>Petit Url</h1>
             <div id="short-bar">
                 <input id="url-field"/>
                 <button id="short-btn" onClick={() => shrinkUrl()} >
