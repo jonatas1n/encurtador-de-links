@@ -1,0 +1,66 @@
+#podium-img {
+    position: fixed;
+    opacity: 0.2;
+    width: 25%;
+    right: 0%;
+    z-index: 0;
+    bottom: 0%;
+}
+
+#link {
+    display: grid;
+    /* grid-template-columns: calc(100% - 40px) 40px; */
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 8px;
+    width: 80%;
+    margin: auto;
+}
+
+#copy-btn{
+    margin-left: 10px;
+    background: none;
+    border: none;
+}
+
+#copy-btn img{
+    width: 20px;
+}
+
+#copy-btn:hover{
+    opacity: 0.7
+}
+
+thead { 
+    font-weight: 600;
+    color: white;
+    background: black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#back-btn{
+    width: 20px;
+}
+
+#back {
+    width: 100%;
+}
+
+#back a{
+    width: 100%;
+    display: flex;
+    place-items: center;
+    gap: 10px;
+    text-align: left;
+    color: black;
+    text-decoration: none;
+}
+
+td, th {
+    text-align: left;
+}
+
+#alertRepeated{
+    display: none;
+}

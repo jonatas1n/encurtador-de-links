@@ -8,10 +8,10 @@ import {
   Switch
 } from 'react-router-dom'
 
-import Home from './components/Home/index'
-import GoTo from './components/GoTo/index'
-import NotFound from './components/NotFound/index'
-import ShowLink from './components/ShowLink/index'
+import Home from './pages/Home/index'
+import GoTo from './pages/GoTo/index'
+import NotFound from './pages/NotFound/index'
+import ShowLink from './pages/ShowLink/index'
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
       <Switch>
         <Route exact path={'/'} component={Home}/>
         <Route exact path={'/show/:link'} component={ShowLink}/>
+        <Route exact path={'/show/:link/:exist'} component={ShowLink}/>
         <Route path={'/not-found'} component={NotFound}/>
         <Route exact path={'/:short'} component={GoTo}/>
         <Redirect to={'/not-found'} />
