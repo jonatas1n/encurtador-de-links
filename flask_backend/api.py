@@ -28,6 +28,12 @@ def showRoutes():
                 'description': 'Create addresses table in database if not already created',
                 'parameters': None
             },
+            '/check' : {
+                'description': 'Returns true if a short link exists in DB',
+                'parameters': {
+                    'short': 'Short Link'
+                }
+            },
             '/redirect' : {
                 'description': 'Redirects navigator from shorted link to corresponding url',
                 'parameters': {
@@ -122,6 +128,12 @@ def getRank():
 def getUrl():
     link = request.args['link']
 
+    methods = ['not-found', 'show']
+    if link in methods:
+        return {
+            'status': error
+        }
+
     url = db.get_url(link)
     if(url):
         return {
@@ -131,7 +143,6 @@ def getUrl():
     else:
         return {
             'status': 'error',
-            'response': ''
         }
 
 if __name__ == '__main__':

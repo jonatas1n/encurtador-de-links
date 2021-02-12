@@ -49,34 +49,6 @@ export default function Home() {
     }
 
     /*
-    * This function validates an url
-    * @param {String} url - url to validate
-    */
-    function validURL(url) {
-        var pattern = new RegExp('^(https?:\\/\\/)?'+ 
-            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ 
-            '((\\d{1,3}\\.){3}\\d{1,3}))'+ 
-            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ 
-            '(\\?[;&a-z\\d%_.~+=-]*)?'+ 
-            '(\\#[-a-z\\d_]*)?$','i'); 
-        return !!pattern.test(url);
-    }
-
-    /*
-    * This function check URL validation and shows Shrink Button to user
-    */
-    function showShrinkBtn(){
-        var element = document.querySelector('.url-field input')
-        var button = document.getElementById('short-btn')
-
-        if(validURL(element.value)){
-            button.style.display = 'block'
-        } else {
-            button.style.display = 'none'
-        }
-    }
-
-    /*
     * Function that shows short-string field when checkbox is checked
     */
     function showShortField(){
@@ -105,7 +77,7 @@ export default function Home() {
                         <input
                             id="url-input"
                             placeholder="http://www.sitelongo.com.br/conteudo"
-                            onChange={(el) => {setLink(el.target.value); showShrinkBtn()}}
+                            onChange={(el) => setLink(el.target.value)}
                             onSubmit={() => shortLinkRequest()}
                         />
                     </div>

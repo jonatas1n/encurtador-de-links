@@ -5,7 +5,6 @@
 - Acesse por um terminal;
 - Com o Docker instalado em sua estação de trabalho, Execute os seguintes comandos:
 		
-		docker-compose build
 		docker-compose up
 
 - Aguarde alguns instantes; e

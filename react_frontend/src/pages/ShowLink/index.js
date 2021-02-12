@@ -8,18 +8,16 @@ import './style.css';
 export default function ShowLink() {
     const [rank, setRank] = useState([])
     
-    let { link, exist } = useParams();
+    let { link } = useParams();
 
-    useEffect(() =>{
-        setTimeout(() => fetch(`/rank`, {'method': 'GET'})
+    useEffect(() => {fetch(`/rank`, {'method': 'GET'})
         .then(res => res.json())
         .then(({ status, response }) => {
             if(status === 'success') {
                 setRank(response)
             }
-        }), 350)
-        
-    })
+        })
+    }, [])
     
     return(
         <main>
@@ -36,11 +34,6 @@ export default function ShowLink() {
                             {`petit.com/${link}`}
                         </a>
                     </h2>
-                    { () => {
-                        console.log(exist)
-                        return exist != null ? (<p id="alertRepeated">Este endereço já foi encurtado anteriormente</p>): null
-                    }}
-                    <br/>
                     <br/>
                     <h3>Menor tamanho,<br/> Maior Alcance.</h3>
                 </div>
