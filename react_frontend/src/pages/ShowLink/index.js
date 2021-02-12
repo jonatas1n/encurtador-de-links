@@ -22,13 +22,13 @@ export default function ShowLink() {
     
     return(
         <main>
-            <div class="side">
+            <div className="side">
                 <div id="back">
                     <a href="http://localhost:8880/">
                         <img id="back-btn" src={chevronLeft}/> Encurtar uma nova URL
                     </a>
                 </div>
-                <div class="card">
+                <div className="card">
                     <h2>Este é o seu novo link:</h2>
                     <h2 id="link">
                         <a href={`/${link}`}>

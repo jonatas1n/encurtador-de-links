@@ -93,7 +93,7 @@ export default function Home() {
 
     return(
         <main>
-            <div class="side card">
+            <div className="side card">
                 <img id="logo" src={logo} alt="logo"></img>
                 <div id="slogan">Reduza o caminho, aumente os acessos!
                     <br/>
@@ -102,7 +102,7 @@ export default function Home() {
                 
 
                 <div id="short-bar">
-                    <div class="url-field">
+                    <div className="url-field">
                         <input
                             id="url-input"
                             placeholder="http://www.sitelongo.com.br/conteudo"
@@ -111,7 +111,7 @@ export default function Home() {
                         />
                     </div>
 
-                    <div class="url-field" id="short-field">
+                    <div className="url-field" id="short-field">
                         <input
                             placeholder="Apelido do link personalizado | petit.com/apelido"
                             onChange={(el) => setShort(el.target.value)}
@@ -119,7 +119,7 @@ export default function Home() {
                         />
                     </div>
                     <p id="message-short">Digite outro apelido. O que você inseriu já existe</p>
-                    <div class="left">
+                    <div className="left">
                         <input
                             id="short-check"
                             type="checkbox"
