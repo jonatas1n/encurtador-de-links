@@ -42,11 +42,7 @@ export default function Home() {
             fetch(`/add?url=${link}&short=${short}`, {
                 'method': 'POST',
             }).then(res => res.json()).then(({status, response}) => {
-                if(status === 'error'){
-                    window.location = `/show/${response}/exist`
-                } else {
-                    window.location = `/show/${response}`
-                }
+                window.location = `/show/${response}`
             })
         } else {
             shortMessage.style.display = 'block'
@@ -95,16 +91,6 @@ export default function Home() {
         }
     }
 
-    navigator.clipboard.readText()
-    .then(text => {
-        var pasteBtn = document.getElementById('paste-btn')
-
-        if(validURL(text)){
-            pasteBtn.style.display = 'block'
-            pasteLink = text
-        }
-    })
-
     return(
         <main>
             <div class="side card">
@@ -123,16 +109,6 @@ export default function Home() {
                             onChange={(el) => {setLink(el.target.value); showShrinkBtn()}}
                             onSubmit={() => shortLinkRequest()}
                         />
-                        <button id="paste-btn">
-                            <img id="paste-icon"
-                                src={paste}
-                                onClick={() => {
-                                        var urlInput = document.getElementById('url-input');
-                                        urlInput.value = pasteLink
-                                    }}
-                                alt="paste-icon"
-                            />
-                        </button>
                     </div>
 
                     <div class="url-field" id="short-field">

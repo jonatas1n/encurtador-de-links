@@ -20,7 +20,6 @@ function App() {
       <Switch>
         <Route exact path={'/'} component={Home}/>
         <Route exact path={'/show/:link'} component={ShowLink}/>
-        <Route exact path={'/show/:link/:exist'} component={ShowLink}/>
         <Route path={'/not-found'} component={NotFound}/>
         <Route exact path={'/:short'} component={GoTo}/>
         <Redirect to={'/not-found'} />
