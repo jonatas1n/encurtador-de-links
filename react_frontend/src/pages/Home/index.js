@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import './style.css';
 
 import logo from '../../assets/img/SVG/Animacao.svg';
-import paste from '../../assets/img/SVG/paste-solid.svg';
 
 /*
  * Home component that returns the homepage of PetitLink
