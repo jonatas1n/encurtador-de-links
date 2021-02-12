@@ -14,6 +14,9 @@ export default function Home() {
 
     var pasteLink = ''
 
+    /*
+    * This function validates short-string
+    */
     function shortValidate(){
         if(short == '') return true
 
@@ -108,7 +111,7 @@ export default function Home() {
                 <img id="logo" src={logo} alt="logo"></img>
                 <div id="slogan">Reduza o caminho, aumente os acessos!
                     <br/>
-                    <h5><i>Insira uma URL muito longa e reduza com PetitLink</i></h5>
+                    <h5><i>Insira uma URL longa e reduza com PetitLink</i></h5>
                 </div>
                 
 

@@ -15,6 +15,8 @@ export default function GoTo() {
     })
 
     return(
-        <h1>Aguarde</h1>
+        <main>
+            <h1>Aguarde</h1>
+        </main>
     )
 }

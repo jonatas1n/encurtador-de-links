@@ -3,8 +3,9 @@
 ## Como executar
 - Faça o download do repositório;
 - Acesse por um terminal;
-- Com o Docker instalado em sua estação de trabalho, Execute o seguinte comando:
+- Com o Docker instalado em sua estação de trabalho, Execute os seguintes comandos:
 		
+		docker-compose build
 		docker-compose up
 
 - Aguarde alguns instantes; e
@@ -52,4 +53,6 @@ Utilizou-se a framework Flask para a implementação da API. Pareada ao serviço
 ### Docker
 Para fazer o melhor versionamento das camadas, utilizou-se a ferramenta Docker para reduzir os problemas com compatibilidade e facilitar a execução e o deploy.
 ### NGINX
-Objetivando integrar os conteiners do serviço, 
+Objetivando integrar os conteiners do serviço, utilizamos uma ferramenta de proxy reverso que a partir de redirecionamento pelos caminhos, foi possível integrar todos conteiners necessários e unificar a porta de acesso da aplicação.
+### React
+Para implementar uma interface dinâmica e com requisições com complexidade suficiente, foi decidida a utilização da framework React. 

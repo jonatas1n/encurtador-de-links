@@ -13,7 +13,9 @@ services:
       - 8880:8880
 
   frontend:
-    image: frontend
+    build:
+      dockerfile: Dockerfile
+      context: ./react_frontend
     volumes:
       - ./react_frontend/src:/frontend/src
       - ./react_frontend/public:/frontend/public
@@ -22,7 +24,9 @@ services:
       - 3000:3000
 
   backend:
-    image: backend
+    build:
+      dockerfile: Dockerfile
+      context: ./flask_backend
     volumes:
       - ./flask_backend:/backend
     restart: on-failure
