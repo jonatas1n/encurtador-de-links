@@ -1,20 +1,28 @@
 main {
     height: 100vh !important;
+    display: -ms-grid;
     display: grid;
     place-items: center;
     width: 100%;
 }
 
 #short-bar {
+    display: -ms-grid;
     display: grid;
     place-items: center;
     gap: 15px;
     width: 100%;
 }
 
+#message-short {
+    display: none;
+}
+
 .url-field {
     width: 80% !important;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: calc(100% - 60px) 60px;
     grid-template-columns: calc(100% - 60px) 60px;
     padding: 8px;
     border: 1px solid #ccc;
@@ -66,12 +74,14 @@ main {
     display: none;
 }
 
-#subtitle {
+#slogan {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 15px;
+    width: 80%;
 }
 
 #logo {
-    width: 600px;
+    -o-object-fit: contain;
+    object-fit: contain;
 }

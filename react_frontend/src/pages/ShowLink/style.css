@@ -42,6 +42,7 @@ thead {
 .left{
     width: 100%;
     text-align: left;
+    margin-left: 20%;
 }
 
 #back-btn{
@@ -69,6 +70,10 @@ td, th {
 
 th {
     padding: 10px auto;
+}
+
+#ranking, #ranking table {
+    width: 100%;
 }
 
 #alertRepeated{

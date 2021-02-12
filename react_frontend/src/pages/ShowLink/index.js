@@ -4,6 +4,7 @@ import podium from '../../assets/img/2x/podium.png';
 import chevronLeft from '../../assets/img/SVG/chevron-left-solid.svg';
 import './style.css';
 
+//This page is responsible for show to user the shortened generated link 
 export default function ShowLink() {
     const [rank, setRank] = useState([])
     

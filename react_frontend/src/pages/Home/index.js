@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+
 import './style.css';
+
 import logo from '../../assets/img/SVG/Animacao.svg';
 import paste from '../../assets/img/SVG/paste-solid.svg';
 
@@ -12,19 +14,40 @@ export default function Home() {
 
     var pasteLink = ''
 
+    function shortValidate(){
+        if(short == '') return true
+
+        fetch(`/check?short=${short}`, {
+            'method': 'POST',
+        }).then(res => res.json()).then(({status, response}) => {
+            if(status === 'sucess'){
+                return false
+            }
+            return true
+        })
+    }
+
     /*
     * This function makes the request to the API for a shortened link from a URL
     */
     function shortLinkRequest() {
-        fetch(`/add?url=${link}&short=${short}`, {
-            'method': 'POST',
-        }).then(res => res.json()).then(({status, response}) => {
-            if(status == 'error'){
-                window.location = `/show/${response}/exist`
-            } else {
-                window.location = `/show/${response}`
-            }
-        })
+        var shortMessage = document.getElementById('message-short')
+
+        shortMessage.style.display = 'none'
+
+        if(shortValidate()){
+            fetch(`/add?url=${link}&short=${short}`, {
+                'method': 'POST',
+            }).then(res => res.json()).then(({status, response}) => {
+                if(status === 'error'){
+                    window.location = `/show/${response}/exist`
+                } else {
+                    window.location = `/show/${response}`
+                }
+            })
+        } else {
+            shortMessage.style.display = 'block'
+        }
     }
 
     /*
@@ -56,7 +79,7 @@ export default function Home() {
     }
 
     /*
-    * Function that shows short string field when checkbox is checked
+    * Function that shows short-string field when checkbox is checked
     */
     function showShortField(){
         var elem = document.getElementById('short-check')
@@ -69,7 +92,8 @@ export default function Home() {
         }
     }
 
-    navigator.clipboard.readText().then(text => {
+    navigator.clipboard.readText()
+    .then(text => {
         var pasteBtn = document.getElementById('paste-btn')
 
         if(validURL(text)){
@@ -82,22 +106,27 @@ export default function Home() {
         <main>
             <div class="side card">
                 <img id="logo" src={logo} alt="logo"></img>
-                <div id="subtitle">Reduza o caminho, aumente os acessos!</div>
+                <div id="slogan">Reduza o caminho, aumente os acessos!
+                    <br/>
+                    <h5><i>Insira uma URL muito longa e reduza com PetitLink</i></h5>
+                </div>
+                
+
                 <div id="short-bar">
                     <div class="url-field">
                         <input
                             id="url-input"
                             placeholder="http://www.sitelongo.com.br/conteudo"
-                            onChange={(e) => {setLink(e.target.value); showShrinkBtn()}}
+                            onChange={(el) => {setLink(el.target.value); showShrinkBtn()}}
                             onSubmit={() => shortLinkRequest()}
                         />
                         <button id="paste-btn">
                             <img id="paste-icon"
                                 src={paste}
                                 onClick={() => {
-                                    var urlInput = document.getElementById('url-input');
-                                    urlInput.value = pasteLink
-                                }}
+                                        var urlInput = document.getElementById('url-input');
+                                        urlInput.value = pasteLink
+                                    }}
                                 alt="paste-icon"
                             />
                         </button>
@@ -106,12 +135,18 @@ export default function Home() {
                     <div class="url-field" id="short-field">
                         <input
                             placeholder="Apelido do link personalizado | petit.com/apelido"
-                            onChange={(e) => setShort(e.target.value)}
+                            onChange={(el) => setShort(el.target.value)}
                             onSubmit={() => shortLinkRequest()}
                         />
                     </div>
+                    <p id="message-short">Digite outro apelido. O que você inseriu já existe</p>
                     <div class="left">
-                        <input id="short-check" type="checkbox" name="short-check" onChange={() => showShortField()}/>
+                        <input
+                            id="short-check"
+                            type="checkbox"
+                            name="short-check"
+                            onChange={() => showShortField()}
+                        />
                         <label for="short-check">Personalizar Link</label>
                     </div>
 

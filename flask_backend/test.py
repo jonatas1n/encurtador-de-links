@@ -25,12 +25,6 @@ class Test_unit(unittest.TestCase):
         # Expected result: Error
         res = self.app.get('/add?url=%s&short=' % 'https://realpython.com/python-string-formatting/#1-old-style-string-formatting-operator')
         assert b'error' in res.data
-    
-    def test_add_invalid_url(self):
-        # Tests invalid URL insertion to DB
-        # Expected Result: Error
-        res = self.app.get('/add?url=%s&short=' % 'australopithecus')
-        assert b'error' in res.data
 
     def test_add_prohibited_url(self):
         # Tests prohibited URL insertion to DB

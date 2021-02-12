@@ -16,6 +16,7 @@ services:
     image: frontend
     volumes:
       - ./react_frontend/src:/frontend/src
+      - ./react_frontend/public:/frontend/public
       - ./react_frontend/package.json:/package.json
     ports: 
       - 3000:3000

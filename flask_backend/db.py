@@ -18,16 +18,16 @@ class Database:
         
         conn.commit()
     
-    def checkURL(self, url):
+    def check_url(self, url):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         c.execute("SELECT COUNT(*) FROM enderecos WHERE url = '%s'" % url)
         return c.fetchone()[0] > 0
 
-    def addURL(self, url, short=False):
+    def add_url(self, url, short=False):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
-        if(self.checkURL(url)):
+        if(self.check_url(url)):
             conn.close()
             return False
         
@@ -53,10 +53,10 @@ class Database:
         c.execute("SELECT short FROM enderecos WHERE url='%s'" % url)
         return c.fetchone()[0]
 
-    def getLink(self, url):
+    def get_link(self, url):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
-        if(self.checkURL(url)):
+        if(self.check_url(url)):
             c.execute("SELECT short FROM enderecos WHERE url LIKE '%s'" % url)
             
             result = c.fetchone()[0]
@@ -66,7 +66,7 @@ class Database:
         conn.close()
         return False
 
-    def getUrl(self, short):
+    def get_url(self, short):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         
@@ -80,12 +80,12 @@ class Database:
                         """ % short)
             conn.commit()
         except:
-            result = ''
+            result = None
 
         conn.close()
         return result
 
-    def getRank(self):
+    def get_rank(self):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
 

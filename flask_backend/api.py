@@ -68,23 +68,17 @@ def addURL():
     if 'short' in request.args:
         short = request.args['short']
 
-    if db.checkURL(url):
-        link = db.getLink(url)
+    if db.check_url(url):
+        link = db.get_link(url)
 
         return {
             'status': 'error',
             'response': link
         }
-    elif urlValidate(url):
-        short = db.addURL(url, short)
-
+    else:
         return {
             'status': 'success',
             'response': short
-        }
-    else:
-        return {
-            'status': 'error'
         }
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -95,9 +89,24 @@ def create():
         'status':'success'
     }
 
+@app.route('/check', methods=['GET', 'POST'])
+def check_link():
+    short = request.args['short']
+
+    if db.get_url(short):
+        return {
+            'status':'success',
+            'response': True
+        }
+
+    return {
+        'status':'success',
+        'response': False
+    }
+
 @app.route('/rank', methods=['GET'])
 def getRank():
-    result = db.getRank()
+    result = db.get_rank()
 
     response = []
 
@@ -113,7 +122,7 @@ def getRank():
 def getUrl():
     link = request.args['link']
 
-    url = db.getUrl(link)
+    url = db.get_url(link)
     if(url):
         return {
             'status': 'success',
@@ -124,16 +133,6 @@ def getUrl():
             'status': 'error',
             'response': ''
         }
-        
-
-def urlValidate(url):
-    return True
-    try:
-        response = requests.get(url)
-        print(response)
-        return True
-    except:
-        return False
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
