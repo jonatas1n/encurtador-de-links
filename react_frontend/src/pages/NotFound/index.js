@@ -1,8 +1,10 @@
 import React from 'react';
-// import './style.css';
 
 export default function NotFound() {
     return(
-        <h1>Página errada, garotão</h1>
+        <div class="card">
+            <h2>Essa página não foi encontrada. Tente novamente...</h2>
+            <a href="localhost:8880/">Ir para o PetitLink</a>
+        </div>
     )
 }

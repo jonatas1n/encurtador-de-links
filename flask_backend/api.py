@@ -3,6 +3,7 @@ from flask_cors import CORS
 import base64
 import requests
 from urllib.parse import urlparse
+import json
 
 from db import Database
 
@@ -10,62 +11,51 @@ app = Flask(__name__)
 CORS(app)
 db = Database()
 
-@app.route('/create', methods=['POST'])
-def create():
+@app.before_request
+def createInit():
     db.create()
-    
-    return {
-        'status':'success'
+
+@app.route('/', methods=['GET', 'POST'])
+def showRoutes(): 
+    response = {
+        'status': 'success',
+        'response': {
+            '/': {
+                'description': 'Show all routes avaiable in API',
+                'parameters': None
+            },
+            '/create' : {
+                'description': 'Create addresses table in database if not already created',
+                'parameters': None
+            },
+            '/redirect' : {
+                'description': 'Redirects navigator from shorted link to corresponding url',
+                'parameters': {
+                    'link': 'Shorted link'
+                }
+            },
+            '/add' : {
+                'description': 'Add a row in table that contains a url, shorted link and another useful data',
+                'parameters': {
+                    'url' : 'URL to be shortened',
+                    'short' : 'Custom text to use as shortened link. (Optional parameter)'
+                }
+            },
+            '/rank' : {
+                'descripion': 'Returns the five most accessed links from PetitLinks',
+                'parameters': None
+            }
+        }
     }
 
-@app.route('/redirect', methods=['POST'])
-def getUrl():
-    link = request.args['link']
+    return json.dumps(response)
 
-    url = db.getUrl(link)
-    if(url):
-        return {
-            'status': 'success',
-            'response': url
-        }
-    else:
-        return {
-            'status': 'fail',
-            'response': ''
-        }
-        
-
-@app.route('/get', methods=['POST'])
-def getLink():
-    if 'url' in request.args:
-        url = request.args['url']
-        parse = urlparse(url)
-        url = url.replace(parse.scheme + '://', '')
-        url = url.replace('www.', '')
-    else:
-        return {
-            'status': 'fail'
-        }
-
-    if(db.checkURL(url)):
-        link = db.getLink(url)
-
-        return {
-            'status': 'fail',
-            'response': link
-        }
-    else:
-        return {
-            'status': 'fail'
-        }
-
-
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['GET', 'POST'])
 def addURL():
     url = request.args['url']
     parse = urlparse(url)
     
-    if parse.path == 'localhost:3000':
+    if 'petit.com' in parse.path:
         return {
             'status': 'error'
         }
@@ -97,6 +87,14 @@ def addURL():
             'status': 'error'
         }
 
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    db.create()
+    
+    return {
+        'status':'success'
+    }
+
 @app.route('/rank', methods=['GET'])
 def getRank():
     result = db.getRank()
@@ -110,6 +108,23 @@ def getRank():
         'status': 'success',
         'response': response
     }
+
+@app.route('/redirect', methods=['GET', 'POST'])
+def getUrl():
+    link = request.args['link']
+
+    url = db.getUrl(link)
+    if(url):
+        return {
+            'status': 'success',
+            'response': url
+        }
+    else:
+        return {
+            'status': 'error',
+            'response': ''
+        }
+        
 
 def urlValidate(url):
     return True

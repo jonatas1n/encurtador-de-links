@@ -3,13 +3,19 @@ import './style.css';
 import logo from '../../assets/img/SVG/Animacao.svg';
 import paste from '../../assets/img/SVG/paste-solid.svg';
 
+/*
+ * Home component that returns the homepage of PetitLink
+ */
 export default function Home() {
     const [link, setLink] = useState('')
     const [short, setShort] = useState('')
 
     var pasteLink = ''
 
-    function shrinkUrl() {
+    /*
+    * This function makes the request to the API for a shortened link from a URL
+    */
+    function shortLinkRequest() {
         fetch(`/add?url=${link}&short=${short}`, {
             'method': 'POST',
         }).then(res => res.json()).then(({status, response}) => {
@@ -21,17 +27,24 @@ export default function Home() {
         })
     }
 
-    function validURL(str) {
+    /*
+    * This function validates an url
+    * @param {String} url - url to validate
+    */
+    function validURL(url) {
         var pattern = new RegExp('^(https?:\\/\\/)?'+ 
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ 
             '((\\d{1,3}\\.){3}\\d{1,3}))'+ 
             '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ 
             '(\\?[;&a-z\\d%_.~+=-]*)?'+ 
             '(\\#[-a-z\\d_]*)?$','i'); 
-        return !!pattern.test(str);
-    } 
+        return !!pattern.test(url);
+    }
 
-    function showButton(){
+    /*
+    * This function check URL validation and shows Shrink Button to user
+    */
+    function showShrinkBtn(){
         var element = document.querySelector('.url-field input')
         var button = document.getElementById('short-btn')
 
@@ -42,7 +55,10 @@ export default function Home() {
         }
     }
 
-    function showShort(){
+    /*
+    * Function that shows short string field when checkbox is checked
+    */
+    function showShortField(){
         var elem = document.getElementById('short-check')
         var shortElem = document.getElementById('short-field')
 
@@ -72,8 +88,8 @@ export default function Home() {
                         <input
                             id="url-input"
                             placeholder="http://www.sitelongo.com.br/conteudo"
-                            onChange={(e) => {setLink(e.target.value); showButton()}}
-                            onSubmit={() => shrinkUrl()}
+                            onChange={(e) => {setLink(e.target.value); showShrinkBtn()}}
+                            onSubmit={() => shortLinkRequest()}
                         />
                         <button id="paste-btn">
                             <img id="paste-icon"
@@ -91,15 +107,15 @@ export default function Home() {
                         <input
                             placeholder="Apelido do link personalizado | petit.com/apelido"
                             onChange={(e) => setShort(e.target.value)}
-                            onSubmit={() => shrinkUrl()}
+                            onSubmit={() => shortLinkRequest()}
                         />
                     </div>
-                    <div>
-                        <input id="short-check" type="checkbox" name="short-check" onChange={() => showShort()}/>
+                    <div class="left">
+                        <input id="short-check" type="checkbox" name="short-check" onChange={() => showShortField()}/>
                         <label for="short-check">Personalizar Link</label>
                     </div>
 
-                    <button id="short-btn" onClick={() => shrinkUrl()} >
+                    <button id="short-btn" onClick={() => shortLinkRequest()} >
                         Encolher Link
                     </button>
                 </div>

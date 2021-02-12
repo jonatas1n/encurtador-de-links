@@ -9,8 +9,6 @@ export default function ShowLink() {
     
     let { link, exist } = useParams();
 
-    console.log(exist);
-
     useEffect(() =>{
         fetch(`/rank`, {'method': 'GET'})
         .then(res => res.json())
@@ -59,7 +57,7 @@ export default function ShowLink() {
                                     <tr>
                                         <td>{it+1})</td>
                                         <td>{(elem[0])}</td>
-                                        <td><a href={'localhost:3000/' + elem[2]}>petit.com/{elem[2]}</a></td>
+                                        <td><a href={'localhost:8880/' + elem[2]}>petit.com/{elem[2]}</a></td>
                                         <td>{elem[1]}</td>
                                     </tr>
                                 )
