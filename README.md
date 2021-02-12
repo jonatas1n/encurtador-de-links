@@ -1,62 +1,55 @@
-# Teste técnico
+![PetitLink Logo](/react_frontend/src/assets/img/SVG/Animacao.svg)
+# **PetitLink**
+## Como executar
+- Faça o download do repositório;
+- Acesse por um terminal;
+- Com o Docker instalado em sua estação de trabalho, Execute o seguinte comando:
+		
+		docker-compose up
 
-## Escopo
-Encurtamento de URL é uma técnica utilizada na internet para transformar um endereço HTTP em um link mais curto. Você foi designado para desenvolver uma nova plataforma que seja capaz de encurtar urls e mostrar os links mais acessados após o encurtamento.
+- Aguarde alguns instantes; e
+- Acesse http://localhost:8880;
+- Experimente a aplicação;
+  
+## Como executar os testes automatizados
+Os testes automatizados foram executas com foco em dois aspectos:
+- Estabilidade das regras de negócio
+- Eficiência da interface gráfica.
 
-Você recebeu três histórias de usuário para serem desenvolvidas na primeira sprint do projeto:
+Para executa-los, basta
 
-1.  Como usuário, desejo encurtar urls para tornar-las mais simples de serem compartilhadas em outras redes;
-	-   O input deve validar se o texto inserido tem o formato de uma url;
-	-   Urls inválidas não poderão ser encurtadas;
-	-   Urls encurtadas devem ser únicas;
-	-  Uma url que já foi encurtada não deve ser encurtada novamente;
+___
 
+# Arquitetura
 
-2.  Como usuário, gostaria de ao clicar em uma url encurtada, ser redirecionado para a url original;
-	-  O usuário deverá ser redirecionado para o encurtador;
-	-  O encurtador deverá reconhecer a url encurtada, e redirecionar o usuário para a url original;
+## Introdução
+Esta aplicação tem como objetivo encurtar endereços URL longos demais a fim de facilitar seu compartilhamento e memorização, podendo aumentar o engajamento relacionado ao conteúdo do site. 
+Neste documento, irei descrever o contexto do desenvolvimento deste site, as ferramentas utilizadas, os parâmetros de análise de requisitos e as funcionalidades aplicadas.
 
+## Visão Geral
+<!-- Adicionar uma imagem aqui descrevendo as camadas do site -->
 
-3.  Como usuário, desejo visualizar as urls mais acessadas após o encurtamento;
-	-   As urls mais acessadas deverão ser apresentadas no formato de ranking;
-	-   O ranking deve mostrar apenas as cinco urls mais acessadas;
-	-   O ranking deve mostrar a url original, a url encurtada e a totalidade de acessos à url encurtada;
+A arquitetura de referência foi o Model-View-Controller, mas algumas adaptações e simplificações foram necessárias devido a simplicidade do projeto em relação às regras de negócio e às rotas. A alteração mais importante foi o desenvolvimento das camadas de visualização e Controle dentro do mesmo container, na mesma framework do frontend, já que não eram necessárias grandes redirecionamentos.
 
+A camada de Modelo é representada por uma API desenvolvida com a framework Flask, na linguagem Python, e o gerenciador do banco de dados também escrito em Python, utilizando o banco serverless SQLite3. 
+Essa camada é a segunda mais profunda do sistema, e só é acessada pela camada de controle.
 
-Dada as histórias anteriores, a plataforma deverá ter duas telas:
+A camada de Controle, simplificada tal qual a descrição do primeiro parágrafo deste tópico, foi descrita no arquivo **App.js**, no diretóro **/react_frontend**. O roteamento das páginas foi feito nesse arquivo, e foi utilizado o NGINX para realizar o Proxy Reverso e fazer os redirecionamentos para a API.
 
-	- Tela para realizar o encurtamento;
-	- Ranking com lista de urls encurtadas;
+A camada de Visualização foi desenvolvida com a framework React, na linguagem Javascript. Duas telas foram desenvolvidas seguindo os requisitos propostos: Uma tela de início, onde o usuário faz a inserção da URL para ser encurtada e pode ter acesso a opção de personalização deste link. A outra tela é a de exibição da URL encurtada, junto com o ranking dos 5 links encurtados mais acessados da ferramenta.
 
+## Requisitos não-funcionais
+### Usabilidade
+- Reduzir ao máximo a quantidade de telas e seções do aplicativo para facilitar o destaque das informações importantes no serviço.
+### Versatilidade
+- O usuário deve ter acesso a opções de personalização de seus links para que eles sejam mais amigáveis e aumentem seu alcance.
 
-As seguintes tecnologias poderão ser utilizadas para o desenvolvimento da solução:
-
-	- Frontend: qualquer biblioteca/framework;
-	- Backend: ruby, python, NodeJS ou PHP (qualquer biblioteca/framework feitos nessas linguagens);
-
-## Deploy
-
-O deploy local deverá ser feito via `docker-compose`.
-Caso o deploy no ambiente local dos avaliadores não funcione, o candidato está automaticamente **desclassificado**.
-
-## Critérios de avaliação
-
-- Organização do código;
-- Legibilidade;
-- Configuração separada da implementação (https://12factor.net/);
-- Testes automatizados (**Aplicação sem testes será desclassificada**);
-- Documentação da arquitetura escolhida para a solução;
-- Aplicação com código copiado de outros candidatos ou da internet será **desclassificada**.
-
-
-## Entrega
-
-Como líder do time, você tem liberdade para implementar a solução na arquitetura que preferir. O fluxo de envio da solução deverá
-ser da seguinte forma:
-
-- Faça um fork privado desse [repositório](https://gitlab.com/pencillabs/encurtador-de-url);
-- Desenvolva a solução no seu fork;
-- Ao final do período do teste, envie um email para `contato@pencillabs.com.br`, com o link para o repositório. Vocẽ deverá
-utilizar o gitlab, e adicionar os usuários dos avaliadores como contribuidores do seu repositório;
-
-O prazo para entrega do projeto é de uma semana a partir do dia **05/02/2021 - Sexta-feira**.
+## Fundamentação
+### Banco de dados
+O banco de dados escolhido foi o SQLite. Seu principal destaque foi a simplicidade de implementação: Com pouco código além dos comandos em SQL, foi possível fazer a implementação de todo o banco. Além disso, sua característica serveless permitiu sua implementação sem a necessidade de um conteiner individual, reduzindo o numero de roteamentos.
+### API
+Utilizou-se a framework Flask para a implementação da API. Pareada ao serviço, essa framework é excelente para projetos de pequeno porte, e com poucas linhas de código estrutura todas as rotas e métodos necessários para as inserções e requisições para o banco de dados
+### Docker
+Para fazer o melhor versionamento das camadas, utilizou-se a ferramenta Docker para reduzir os problemas com compatibilidade e facilitar a execução e o deploy.
+### NGINX
+Objetivando integrar os conteiners do serviço, 
