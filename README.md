@@ -26,7 +26,7 @@ Esta aplicação tem como objetivo encurtar endereços URL longos demais a fim d
 Neste documento, irei descrever o contexto do desenvolvimento deste site, as ferramentas utilizadas, os parâmetros de análise de requisitos e as funcionalidades aplicadas.
 
 ## Visão Geral
-<!-- Adicionar uma imagem aqui descrevendo as camadas do site -->
+![PetitLink Logo](/uml.png)
 
 A arquitetura de referência foi o Model-View-Controller, mas algumas adaptações e simplificações foram necessárias devido a simplicidade do projeto em relação às regras de negócio e às rotas. A alteração mais importante foi o desenvolvimento das camadas de visualização e Controle dentro do mesmo container, na mesma framework do frontend, já que não eram necessárias grandes redirecionamentos.
 
@@ -46,11 +46,15 @@ A camada de Visualização foi desenvolvida com a framework React, na linguagem 
 ## Fundamentação
 ### Banco de dados
 O banco de dados escolhido foi o SQLite. Seu principal destaque foi a simplicidade de implementação: Com pouco código além dos comandos em SQL, foi possível fazer a implementação de todo o banco. Além disso, sua característica serveless permitiu sua implementação sem a necessidade de um conteiner individual, reduzindo o numero de roteamentos.
+
 ### API
 Utilizou-se a framework Flask para a implementação da API. Pareada ao serviço, essa framework é excelente para projetos de pequeno porte, e com poucas linhas de código estrutura todas as rotas e métodos necessários para as inserções e requisições para o banco de dados
+
 ### Docker
 Para fazer o melhor versionamento das camadas, utilizou-se a ferramenta Docker para reduzir os problemas com compatibilidade e facilitar a execução e o deploy.
+
 ### NGINX
 Objetivando integrar os conteiners do serviço, utilizamos uma ferramenta de proxy reverso que a partir de redirecionamento pelos caminhos, foi possível integrar todos conteiners necessários e unificar a porta de acesso da aplicação.
+
 ### React
 Para implementar uma interface dinâmica e com requisições com complexidade suficiente, foi decidida a utilização da framework React. 
