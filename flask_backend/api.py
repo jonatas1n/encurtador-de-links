@@ -68,17 +68,19 @@ def addURL():
     if 'short' in request.args:
         short = request.args['short']
 
-    if db.check_url(url):
-        link = db.get_link(url)
-
+    link = db.get_link(url)
+    
+    if link:
         return {
             'status': 'error',
             'response': link
         }
     else:
+        db.add_url(url, short)
+        link = db.get_link(url)
         return {
             'status': 'success',
-            'response': short
+            'response': link
         }
 
 @app.route('/create', methods=['GET', 'POST'])
