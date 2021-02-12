@@ -17,7 +17,7 @@ def createInit():
 
 @app.route('/', methods=['GET', 'POST'])
 def showRoutes(): 
-    response = {
+    return {
         'status': 'success',
         'response': {
             '/': {
@@ -47,8 +47,6 @@ def showRoutes():
             }
         }
     }
-
-    return json.dumps(response)
 
 @app.route('/add', methods=['GET', 'POST'])
 def addURL():

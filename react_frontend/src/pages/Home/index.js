@@ -129,8 +129,8 @@ export default function Home() {
                         <label for="short-check">Personalizar Link</label>
                     </div>
 
-                    <button id="short-btn" onClick={() => shortLinkRequest()} >
-                        Encolher Link
+                    <button id="short-btn" type="submit" onClick={() => shortLinkRequest()} >
+                        Encolher!
                     </button>
                 </div>
             </div>

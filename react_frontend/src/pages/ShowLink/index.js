@@ -11,13 +11,14 @@ export default function ShowLink() {
     let { link, exist } = useParams();
 
     useEffect(() =>{
-        fetch(`/rank`, {'method': 'GET'})
+        setTimeout(() => fetch(`/rank`, {'method': 'GET'})
         .then(res => res.json())
         .then(({ status, response }) => {
             if(status === 'success') {
                 setRank(response)
             }
-        })
+        }), 350)
+        
     })
     
     return(
@@ -58,7 +59,7 @@ export default function ShowLink() {
                                     <tr>
                                         <td>{it+1})</td>
                                         <td>{(elem[0])}</td>
-                                        <td><a href={'localhost:8880/' + elem[2]}>petit.com/{elem[2]}</a></td>
+                                        <td><a href={'http://localhost:8880/' + elem[2]}>petit.com/{elem[2]}</a></td>
                                         <td>{elem[1]}</td>
                                     </tr>
                                 )

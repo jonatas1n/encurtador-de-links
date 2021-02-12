@@ -13,11 +13,9 @@
 - Experimente a aplicação;
   
 ## Como executar os testes automatizados
-Os testes automatizados foram executas com foco em dois aspectos:
-- Estabilidade das regras de negócio
-- Eficiência da interface gráfica.
+Para executar o teste automatizado, basta executar o arquivo **test.py**, no diretório **./flask_backend**.
 
-Para executa-los, basta
+		python test.py
 
 ___
 
