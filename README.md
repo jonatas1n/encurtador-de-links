@@ -7,7 +7,7 @@
 		
 		docker-compose up
 
-- Aguarde alguns instantes; e
+- Aguarde alguns instantes;
 - Acesse http://localhost:8880;
 - Experimente a aplicação;
   
@@ -27,14 +27,14 @@ Neste documento, irei descrever o contexto do desenvolvimento deste site, as fer
 ## Visão Geral
 ![PetitLink Logo](/uml.png)
 
-A arquitetura de referência foi o Model-View-Controller, mas algumas adaptações e simplificações foram necessárias devido a simplicidade do projeto em relação às regras de negócio e às rotas. A alteração mais importante foi o desenvolvimento das camadas de visualização e Controle dentro do mesmo container, na mesma framework do frontend, já que não eram necessárias grandes redirecionamentos.
+A arquitetura de referência foi a Model-View-Controller, mas algumas adaptações e simplificações foram necessárias devido à simplicidade do projeto em relação às regras de negócio e às rotas. A alteração mais importante foi o desenvolvimento das camadas de visualização e controle dentro do mesmo container, na mesma framework do frontend, já que não eram necessários grandes redirecionamentos.
 
-A camada de Modelo é representada por uma API desenvolvida com a framework Flask, na linguagem Python, e o gerenciador do banco de dados também escrito em Python, utilizando o banco serverless SQLite3. 
+A camada de Modelo é representada por uma API desenvolvida com a framework Flask, na linguagem Python, e o gerenciador do banco de dados também escrito em Python, utilizando-se o banco serverless SQLite. 
 Essa camada é a segunda mais profunda do sistema, e só é acessada pela camada de controle.
 
 A camada de Controle, simplificada tal qual a descrição do primeiro parágrafo deste tópico, foi descrita no arquivo **App.js**, no diretóro **/react_frontend**. O roteamento das páginas foi feito nesse arquivo, e foi utilizado o NGINX para realizar o Proxy Reverso e fazer os redirecionamentos para a API.
 
-A camada de Visualização foi desenvolvida com a framework React, na linguagem Javascript. Duas telas foram desenvolvidas seguindo os requisitos propostos: Uma tela de início, onde o usuário faz a inserção da URL para ser encurtada e pode ter acesso a opção de personalização deste link. A outra tela é a de exibição da URL encurtada, junto com o ranking dos 5 links encurtados mais acessados da ferramenta.
+A camada de Visualização foi desenvolvida com a framework React, na linguagem Javascript. Duas telas foram desenvolvidas seguindo os requisitos propostos: Uma tela de início, onde o usuário faz a inserção da URL para ser encurtada e poder-se ter acesso à opção de personalização deste link. A outra tela é a de exibição da URL encurtada, junto com o ranking dos 5 links encurtados mais acessados da ferramenta.
 
 ## Requisitos não-funcionais
 ### Usabilidade
@@ -44,13 +44,13 @@ A camada de Visualização foi desenvolvida com a framework React, na linguagem 
 
 ## Fundamentação
 ### Banco de dados
-O banco de dados escolhido foi o SQLite. Seu principal destaque foi a simplicidade de implementação: Com pouco código além dos comandos em SQL, foi possível fazer a implementação de todo o banco. Além disso, sua característica serveless permitiu sua implementação sem a necessidade de um conteiner individual, reduzindo o numero de roteamentos.
+O banco de dados escolhido foi o SQLite. Seu principal destaque foi a simplicidade de implementação: Com pouco código, além dos comandos em SQL, foi possível fazer a implementação de todo o banco. Além disso, sua característica serveless permitiu sua implementação sem a necessidade de um conteiner individual, reduzindo o numero de roteamentos.
 
 ### API
-Utilizou-se a framework Flask para a implementação da API. Pareada ao serviço, essa framework é excelente para projetos de pequeno porte, e com poucas linhas de código estrutura todas as rotas e métodos necessários para as inserções e requisições para o banco de dados
+Utilizou-se a framework Flask para a implementação da API. Pareada ao serviço, essa framework é excelente para projetos de pequeno porte, e com poucas linhas de código estrutura todas as rotas e métodos necessários para as requisições para o banco de dados
 
 ### Docker
-Para fazer o melhor versionamento das camadas, utilizou-se a ferramenta Docker para reduzir os problemas com compatibilidade e facilitar a execução e o deploy.
+Com vistas ao melhor versionamento das camadas, utilizou-se a ferramenta Docker para reduzir os problemas com compatibilidade e facilitar a execução e o deploy.
 
 ### NGINX
 Objetivando integrar os conteiners do serviço, utilizamos uma ferramenta de proxy reverso que a partir de redirecionamento pelos caminhos, foi possível integrar todos conteiners necessários e unificar a porta de acesso da aplicação.
